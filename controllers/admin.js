@@ -156,3 +156,25 @@ exports.test =(req, res, next) =>{
 
 }
  
+
+
+exports.delete=(req,res,next)=>{
+  let _id=req.query.id;
+  let name={name:'Subrat'}
+  if(_id){
+    let data=db();
+    data.collection('companies').deleteOne({_id:new mongodb.ObjectID(_id)}).then((response)=>{
+      res.status(200).send({message:'data chnaged successfull',data:response})
+    })
+    .catch((err)=>{
+      res.status(500).send({message:'some error occured',data:err})
+    })
+  }else res.status(400).send({message:'you need to get ID'})
+ 
+ 
+
+}
+
+exports.addData=(req,res,next)=>{
+  
+}

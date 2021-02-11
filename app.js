@@ -17,6 +17,7 @@ app.use('/admin', adminRoutes);
 
 const shopRoutes = require('./routes/shop');
 app.use(express.json());
+app.use(express.urlencoded());
 app.use(express.static(path.join(__dirname, 'public')));
 // 
 
