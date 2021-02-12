@@ -1,6 +1,7 @@
 const Product = require('../models/product');
 const db=require('../util/database').getDataBaseName;
 const mongodb=require('mongodb');
+const User=require('../models/user');
 
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
@@ -175,6 +176,48 @@ exports.delete=(req,res,next)=>{
 
 }
 
-exports.addData=(req,res,next)=>{
-  
+
+ function check(name){
+     let d=db();
+     let obj;
+     d.collection('users').findOne({name:name}).then((response)=>{
+                 //console.log(response)
+              
+                if(response!==null){
+                  //console.log('returning null')
+                    obj=response;
+                    return obj;
+                }else{
+                  //console.log('data found')
+                   obj=null;
+                   return obj;
+                }    
+     })
+     .catch((err)=>{
+       return -1;
+     })
+
+}
+
+exports.addUser=(req,res,next)=>{
+     
+     let name=req.query.name;
+     let gender=req.query.name;
+     let password=req.query.password
+     //instantiating db with mongo client.
+     let data=db();
+
+     // data to be added using mongoose.
+      const user=new User({name:name,gender:gender,password:password})
+        user.save().then(result=>{
+          console.log('result')
+        }) 
+      
+    //  data.collection('users').insertOne(obj).then((response)=>{
+      
+    //      res.status(200).json(response)
+    //  })
+    //  .catch((err)=>{
+    //    res.status(500).send({message:'an error occurred'})
+    //  })
 }
