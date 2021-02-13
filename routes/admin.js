@@ -29,5 +29,6 @@ router.post('/testing',adminController.test);
 router.delete('/delete',adminController.delete);
 router.post('/addUser',adminController.addUser)
 router.get('/getUser',adminController.getUser);
+router.put('/updateUser',adminController.updateUser)
 
 module.exports = router;

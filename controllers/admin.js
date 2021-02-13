@@ -230,3 +230,27 @@ exports.getUser=(req,res,next)=>{
 
 
 }
+
+
+exports.updateUser=(req,res,next)=>{
+  console.log('dauduasd')
+  let name=req.query.name;
+  let change={
+    password:'linux',
+    gender:'unknown'
+  }
+
+  if(name){
+  User.findOneAndUpdate({name:req.query.name},change,).then((result)=>{
+    if(result==null){
+      res.status(403).json({message:'we could not find an entry with this name'})
+    }else{
+    res.status(200).json({message:'Data updated successfully',data:result})
+    }
+  })
+  
+
+  }else res.status(500).send('You  must have a name')
+ 
+}
+
