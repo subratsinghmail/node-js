@@ -28,13 +28,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(errorController.get404);
 
-// mongoose.connect('mongodb+srv://test:test@cluster101.jqj99.mongodb.net/sample_training?retryWrites=true&w=majority').then((result)=>{
-//   console.log('connected')
-//   app.listen(3000)
-// })
+mongoose.connect('mongodb+srv://test:test@cluster101.jqj99.mongodb.net/sample_training?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true})
 
-mongoConnect((client) => {
-  
-  app.listen(3000);
+mongoose.connection.once('open',()=>
+{  console.log('connected') 
+ app.listen(3000) })
  
-});
+ .on('error',()=>{console.log('err')})
+  // console.log('connected')
+  // app.listen(3000)
+
+
+// mongoConnect((client) => {
+  
+//   app.listen(3000);
+ 
+// });

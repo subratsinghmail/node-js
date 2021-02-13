@@ -202,15 +202,14 @@ exports.delete=(req,res,next)=>{
 exports.addUser=(req,res,next)=>{
      
      let name=req.query.name;
-     let gender=req.query.name;
-     let password=req.query.password
+     let gender=req.query.gender;
+     let password=req.query.password;
      //instantiating db with mongo client.
-     let data=db();
-
+   
      // data to be added using mongoose.
       const user=new User({name:name,gender:gender,password:password})
         user.save().then(result=>{
-          console.log('result')
+          res.send(200).json(result)
         }) 
       
     //  data.collection('users').insertOne(obj).then((response)=>{
