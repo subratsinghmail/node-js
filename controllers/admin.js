@@ -220,3 +220,13 @@ exports.addUser=(req,res,next)=>{
     //    res.status(500).send({message:'an error occurred'})
     //  })
 }
+
+exports.getUser=(req,res,next)=>{
+  let name=req.query.name;
+   User.find({name:name}).then((users)=>{
+      res.status(200).json({message:'data fetched successfull',data:users})
+   })
+  
+
+
+}

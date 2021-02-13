@@ -28,6 +28,6 @@ router.get('/getData',adminController.getData);
 router.post('/testing',adminController.test);
 router.delete('/delete',adminController.delete);
 router.post('/addUser',adminController.addUser)
-
+router.get('/getUser',adminController.getUser);
 
 module.exports = router;
