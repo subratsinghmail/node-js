@@ -4,8 +4,13 @@ const Schema=mongoose.Schema;
 const userSchema=new Schema({
   name:String,
   gender:String,
-  password:String 
+  password:String,
+  trips:{
+    type:Schema.Types.ObjectId,
+    ref:'zips'
+  }
 })
+
 
 
 

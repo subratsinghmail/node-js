@@ -16,6 +16,8 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
+const tripRoutes=require('./routes/trips');
+app.use('/trips',tripRoutes)
 app.use('/admin', adminRoutes);
 
 

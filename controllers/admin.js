@@ -158,7 +158,6 @@ exports.test =(req, res, next) =>{
 }
  
 
-
 exports.delete=(req,res,next)=>{
   let _id=req.query.id;
   let name={name:'Subrat'}
@@ -199,6 +198,7 @@ exports.delete=(req,res,next)=>{
 
 }
 
+
 exports.addUser=(req,res,next)=>{
      
      let name=req.query.name;
@@ -207,9 +207,9 @@ exports.addUser=(req,res,next)=>{
      //instantiating db with mongo client.
    
      // data to be added using mongoose.
-      const user=new User({name:name,gender:gender,password:password})
+      const user=new User({name:name,gender:gender,password:password,trips:'5c8eccc1caa187d17ca6ed1e'})
         user.save().then(result=>{
-          res.send(200).json(result)
+          res.status(200).json(result)
         }) 
       
     //  data.collection('users').insertOne(obj).then((response)=>{
@@ -223,7 +223,7 @@ exports.addUser=(req,res,next)=>{
 
 exports.getUser=(req,res,next)=>{
   let name=req.query.name;
-   User.find({name:name}).then((users)=>{
+   User.find({name:name}).select('name password').populate('trips').then((users)=>{
       res.status(200).json({message:'data fetched successfull',data:users})
    })
   
