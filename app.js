@@ -1,7 +1,7 @@
 const path = require('path');
 
 const express = require('express');
-const bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 //controller which turns the function.
@@ -14,7 +14,8 @@ const app = express();
 //setting up the express app
 app.set('view engine', 'ejs');
 app.set('views', 'views');
-
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
 const adminRoutes = require('./routes/admin');
 const tripRoutes=require('./routes/trips');
 app.use('/trips',tripRoutes)
@@ -23,8 +24,8 @@ app.use('/admin', adminRoutes);
 
 //const shopRoutes = require('./routes/shop');
 
-app.use(express.json());
-app.use(express.urlencoded());
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 // 
 
