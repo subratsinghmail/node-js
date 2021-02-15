@@ -24,13 +24,15 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
-//using the session
+
+//using the session functionality from express.
 app.use(session({secret:'dont',resave:false,saveUninitialized:false,store:store}))
-app.use('/login',authService.postLogin)
-app.use('/trips',tripRoutes)
+//configuring the routes.
+app.post('/signup',authService.signup);
+app.post('/login',authService.postLogin)
+app.use('/trips',tripRoutes);
 app.use('/admin', adminRoutes);
-
-
+app.use(errorController.get404);
 //const shopRoutes = require('./routes/shop');
 
 
@@ -38,8 +40,8 @@ app.use('/admin', adminRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 // 
 
-app.use(errorController.get404);
 
+// using mongoose to connect to the database.
 mongoose.connect(URI,{useNewUrlParser: true, useUnifiedTopology: true})
 
 mongoose.connection.once('open',()=>
