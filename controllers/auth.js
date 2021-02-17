@@ -38,7 +38,7 @@ exports.signup= async(req,res,next)=>{
 
    //finding a user with an id.
     let check=await User.find({name:name});
-     
+              
 
      if(check==null||check.length==0){
        let hash=await bcrypt.hash(password,12);
@@ -61,4 +61,6 @@ exports.signup= async(req,res,next)=>{
 
 
 }
+
+
 
