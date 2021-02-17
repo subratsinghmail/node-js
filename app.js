@@ -29,7 +29,7 @@ app.use(bodyParser.json())
 app.use(session({secret:'dont',resave:false,saveUninitialized:false,store:store}))
 //configuring the routes.
 app.post('/signup',authService.signup);
-app.post('/login',authService.postLogin)
+app.post('/login',authService.getLogin)
 app.use('/trips',tripRoutes);
 app.use('/admin', adminRoutes);
 app.use(errorController.get404);

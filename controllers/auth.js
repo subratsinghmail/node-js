@@ -11,8 +11,21 @@ exports.postLogin=async(req,res,next)=>{
 }
 
 exports.getLogin=(req,res,next)=>{
-    let name=req.body.email;
-    let email=req.body.password;
+    let name1=req.body.name;
+    let  password=req.body.password;
+      User.findOne({name:name1}).then((response)=>{
+          if(response){
+              //console.log(response)
+              bcrypt.compare(password,response.password).then((match)=>{
+                  if(match){
+                      res.status(200).send('login successfull')
+                  }else res.status(200).send('Wrong password')
+              }).catch((err)=>{
+                   console.log(err)
+                  res.status(200).json({mesage:err})
+              })
+          }
+      })
     
 
 }
