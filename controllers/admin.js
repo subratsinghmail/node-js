@@ -211,6 +211,9 @@ exports.addUser=(req,res,next)=>{
         user.save().then(result=>{
           res.status(200).json(result)
         }) 
+        .catch((err)=>{
+          console.log(err)
+        })
       
     //  data.collection('users').insertOne(obj).then((response)=>{
       

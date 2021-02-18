@@ -1,7 +1,7 @@
 
 const User=require('../models/user');
 const bcrypt=require('bcryptjs')
-
+const crypto=require('crypto');
 
 exports.postLogin=async(req,res,next)=>{
     //setting a cookie
@@ -58,7 +58,36 @@ exports.signup= async(req,res,next)=>{
 
         res.status(400).send({message:'User already has an account'})
     }
+     //creating logic.
 
+
+}
+
+
+exports.resetPass=(req,res,next)=>{
+  let name=req.query.name;
+  crypto.randomBytes(32,(err,buffer)=>{
+      if(err){
+          res.status(500).send('we ran into an error')
+      }
+
+      
+      
+    User.findOne({name}).then((result)=>{
+     if(!result){
+        res.status(200).send('you arent connected with us.')
+     }else{
+        const token=buffer.toString('hex');
+          result.resetToken=token;
+          result.resetTokenExpires=Date.now()+3600000;
+         return User.save()
+     }
+
+
+ }).catch()
+     console.log('')
+  })
+    
 
 }
 
