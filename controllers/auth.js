@@ -80,7 +80,7 @@ exports.resetPass=(req,res,next)=>{
         const token=buffer.toString('hex');
           result.resetToken=token;
           result.resetTokenExpires=Date.now()+3600000;
-         return User.save()
+         return User.updateOne({name:name},{})
      }
 
 

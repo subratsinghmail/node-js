@@ -10,8 +10,9 @@ const tripRoutes=require('./routes/trips');
 const errorController = require('./controllers/error');
 const mongoConnect = require('./util/database').mongoConnect;
 
-//importing the auth Router.
 const authRouter=require('./routes/auth');
+//importing the auth Router.
+
 
 const  MongoDBStore  = require('connect-mongodb-session')(session);
 
@@ -32,9 +33,9 @@ app.use(bodyParser.json())
 //using the session functionality from express.
 app.use(session({secret:'dont',resave:false,saveUninitialized:false,store:store}))
 //configuring the routes.
-app.get('/auth',authRouter)
-app.post('/signup',authService.signup);
-app.post('/login',authService.getLogin)
+app.use('/auth',authRouter)
+//app.post('/signup',authService.signup);
+// app.post('/login',authService.getLogin)
 app.use('/trips',tripRoutes);
 app.use('/admin', adminRoutes);
 app.use(errorController.get404);
