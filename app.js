@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 
 //controller which turns the function.
 const errorController = require('./controllers/error');
-const mongoConnect = require('./util/database').mongoConnect;
+const authRoutes=require('./routes/auth');
+//const mongoConnect = require('./util/database').mongoConnect;
 
 
 //setting an instantiating the app.
@@ -20,6 +21,7 @@ const adminRoutes = require('./routes/admin');
 const tripRoutes=require('./routes/trips');
 app.use('/trips',tripRoutes)
 app.use('/admin', adminRoutes);
+app.use('/auth',authRoutes);
 
 
 //const shopRoutes = require('./routes/shop');

@@ -8,7 +8,9 @@ const userSchema=new Schema({
   trips:{
     type:Schema.Types.ObjectId,
     ref:'zips'
-  }
+  },
+  resetToken:String,
+  resetTokenExpires:Date
 })
 
 
