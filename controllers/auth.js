@@ -67,3 +67,17 @@ exports.reset=async(req,res,next)=>{
        
 
 }
+
+
+exports.login=(req,res,next)=>{
+ let name=req.body.name;
+   User.findOne({name:name}).select("-password").then((user)=>{
+    res.status(200).json({user})
+
+   }).catch((err)=>{
+       const error=new Error('there seems to be problem')
+       error.status=503;
+       throw error;
+   })
+
+}

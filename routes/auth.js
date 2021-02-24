@@ -6,5 +6,6 @@ const router=express.Router();
 
 router.get('/reset',authController.resetPass);
 router.post('/resetPassword',authController.reset);
+router.post('/login',authController.login);
 
 module.exports=router;
