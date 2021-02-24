@@ -5,7 +5,7 @@ const authController=require('../controllers/auth')
 const router=express.Router();
 
 
-router.get('/login',authController.getLogin)
+router.post('/login',authController.getLogin)
 router.get('/reset',authController.resetPass)
 router.post('/signUp',authController.signup)
 

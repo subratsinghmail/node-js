@@ -1,7 +1,7 @@
-<<<<<<< HEAD
+
 
 const User=require('../models/user');
-const bcrypt=require('bcryptjs')
+const bcrypt=require('bcrypt')
 const crypto=require('crypto');
 
 exports.postLogin=async(req,res,next)=>{
@@ -11,22 +11,55 @@ exports.postLogin=async(req,res,next)=>{
 
 }
 
+
 exports.getLogin=(req,res,next)=>{
     let name1=req.body.name;
     let  password=req.body.password;
-      User.findOne({name:name1}).then((response)=>{
-          if(response){
+      User.findOne({name:name1}).then(async (response)=>{
+    
               //console.log(response)
-              bcrypt.compare(password,response.password).then((match)=>{
-                  if(match){
-                      res.status(200).send('login successfull')
-                  }else res.status(200).send('Wrong password')
-              }).catch((err)=>{
+              if(response){
+              const match=await bcrypt.compare(password,response.password);
+
+              if(match){
+                res.status(200).json({
+                    status:1,
+                    mesage:"logged in successfuly",
+                    data:match,
+                    response:response
+                })
+              }else{
+                res.status(200).json({
+                    status:0,
+                    mesage:"your password is wrong",
+                    data:match,
+                    
+                })
+              }}else{
+                  res.status(200).json({
+                      status:0,
+                      mesage:"no user found "
+                  })
+              }
+                //   if(match){
+                //       res.status(200).send('login successfull')
+                //   }else{
+                //       const err=new Error()
+                //       err.status=503;
+                //       err.message="Password is incorrect"
+                //       res.status(err.status).send({message:err})
+                     
+                //   }
+              })
+              
+              
+              
+              .catch((err)=>{
                    console.log(err)
                   res.status(200).json({mesage:err})
               })
-          }
-      })
+          
+      
     
 
 }
@@ -41,7 +74,7 @@ exports.signup= async(req,res,next)=>{
     let check=await User.find({name:name});
               
 
-     if(check==null||check.length==0){
+     if(!check){
        let hash=await bcrypt.hash(password,12);
      
        const newUser= new User({

@@ -187,35 +187,10 @@ function check(name) {
         return obj;
       }
     })
-<<<<<<< HEAD
-  }else res.status(400).send({message:'you need to get ID'})
- 
- 
-
-}
+  }
 
 
- function check(name){
-     let d=db();
-     let obj;
-     d.collection('users').findOne({name:name}).then((response)=>{
-                 //console.log(response)
-              
-                if(response!==null){
-                  //console.log('returning null')
-                    obj=response;
-                    return obj;
-                }else{
-                  //console.log('data found')
-                   obj=null;
-                   return obj;
-                }    
-     })
-     .catch((err)=>{
-       return -1;
-     })
 
-}
 
 
 exports.addUser=(req,res,next)=>{
