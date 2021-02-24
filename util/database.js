@@ -18,7 +18,7 @@ const mongoConnect = callback => {
   //     console.log(err);
   //   });
 
-  mongoose.connect('mongodb+srv://test:test@cluster101.jqj99.mongodb.net/sample_training?retryWrites=true&w=majority').then((result)=>{
+  mongoose.connect('mongodb+srv://test:test@cluster101.jqj99.mongodb.net/sample_training?retryWrites=true&w=majority',{useFindAndModify:false,useNewUrlParser:true}).then((result)=>{
      
    _db=mongoose.connection;
    db.on('error',console.error.bind(console,'connection error'))

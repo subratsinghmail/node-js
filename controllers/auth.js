@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 const User=require('../models/user');
 const bcrypt=require('bcryptjs')
@@ -88,8 +89,16 @@ exports.resetPass=(req,res,next)=>{
      console.log('')
   })
     
+}
+exports.login=(req,res,next)=>{
+ let name=req.body.name;
+   User.findOne({name:name}).select("-password").then((user)=>{
+    res.status(200).json({user})
+
+   }).catch((err)=>{
+       const error=new Error('there seems to be problem')
+       error.status=503;
+       throw error;
+   })
 
 }
-
-
-

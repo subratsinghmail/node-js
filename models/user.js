@@ -1,6 +1,7 @@
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema;
 
+
 const userSchema=new Schema({
   name:String,
   gender:String,
@@ -10,7 +11,7 @@ const userSchema=new Schema({
     ref:'zips'
   },
   resetToken:String,
-  resetTokenExpires:String
+  resetTokenExpires:Date
 })
 
 

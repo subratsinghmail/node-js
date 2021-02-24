@@ -24,11 +24,11 @@ router.post('/delete-product', adminController.postDeleteProduct);
 
 //changes here are made by me at office.
 
-router.get('/getData',adminController.getData);
-router.post('/testing',adminController.test);
-router.delete('/delete',adminController.delete);
-router.post('/addUser',adminController.addUser)
-router.get('/getUser',adminController.getUser);
-router.put('/updateUser',adminController.updateUser)
+// router.get('/getData',adminController.getData);
+// router.post('/testing',adminController.test);
+// router.delete('/delete',adminController.delete);
+// router.post('/addUser',adminController.addUser)
+// router.get('/getUser',adminController.getUser);
+// router.put('/updateUser',adminController.updateUser)
 
 module.exports = router;

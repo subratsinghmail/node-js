@@ -10,3 +10,4 @@ router.get('/reset',authController.resetPass)
 router.post('/signUp',authController.signup)
 
 module.exports=router
+
