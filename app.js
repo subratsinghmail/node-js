@@ -1,3 +1,7 @@
+const dotenv=require("dotenv");
+dotenv.config({
+  path:".env"
+})
 const path = require("path");
 const express = require("express");
 var bodyParser = require("body-parser");
@@ -13,7 +17,7 @@ const errorController = require("./controllers/error");
 
 const authRouter = require("./routes/auth");
 //importing the auth Router.
-
+   
 // const  MongoDBStore  = require('connect-mongodb-session')(session);
 
 // <<<<<<< HEAD

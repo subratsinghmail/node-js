@@ -20,7 +20,7 @@ exports.getLogin = (req, res, next) => {
         const match = await bcrypt.compare(password, response.password);
 
         if (match) {
-          const token = jwt.sign({ name: response.name }, "thisismysecret", {
+          const token = jwt.sign({ name: response.name }, process.env.JWT_SECRET, {
             expiresIn: "1h",
           });
           res.status(200).json({
